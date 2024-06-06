@@ -1,0 +1,11 @@
+<div class="main">
+  <div class="inner">
+    <div class="form__wrapper">
+      <h2 class="page-heading">プロトタイプ編集</h2>
+        <%#= @prototype.title %>
+        <%#= @prototype.catch_copy %>
+        <%#= @prototype.concept %>
+        <%= render partial: "form", locals: { ptype: @prototype } %>
+    </div>
+  </div>
+</div>
