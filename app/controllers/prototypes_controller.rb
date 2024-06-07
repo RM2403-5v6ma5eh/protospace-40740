@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_prototype, only:  :edit
-  before_action :redirect_unless_owner, only: [:edit, :update, :destroy]
+  before_action :redirect_unless_owner, only: :edit
 
   def index
     @prototypes = Prototype.includes(:user).order("created_at DESC")
@@ -52,7 +52,12 @@ class PrototypesController < ApplicationController
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
   end
 
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
+  end
+
   def redirect_unless_owner
+  #  binding.pry
     unless current_user == @prototype.user
       redirect_to root_path
     end
