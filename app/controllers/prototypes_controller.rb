@@ -55,7 +55,7 @@ class PrototypesController < ApplicationController
   def redirect_unless_owner
     unless current_user == @prototype.user
       redirect_to root_path
-    endn?
+    end
   end
 
 end
